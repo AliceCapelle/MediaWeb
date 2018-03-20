@@ -1,0 +1,24 @@
+<web-app>
+<servlet>
+	<servlet-name>connection</servlet-name>
+	<servlet-class>mediatheque.connection</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>connection</servlet-name>
+	<url-pattern>/connection</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+	<servlet-name>succes</servlet-name>
+	<servlet-class>mediatheque.succes</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>succes</servlet-name>
+	<url-pattern>/succes</url-pattern>
+</servlet-mapping>
+
+
+
+
+</web-app>
