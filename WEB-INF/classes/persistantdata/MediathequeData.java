@@ -12,36 +12,14 @@ import mediatheque.*;
 
 public class MediathequeData implements PersistentMediatheque {
 // Jean-Fran�ois Brette 01/01/2018
-	
-	private static String driver;
-	private static String url;
-	private static String user;
-	private static String mdp;
 	private static Connection con;
 	
-	static {
-		Mediatheque.getInstance().setData(new MediathequeData());
-		driver = "org.mariadb.jdbc.Driver";
-		url = "jdbc:mariadb://localhost:3306/projet_java";
-		user = "root";
-		mdp = "";
-		con = null;
-		try {
-			Class.forName(driver);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			con = DriverManager.getConnection(url, user, mdp);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-	}
 
 	private MediathequeData() {
-	}
+		Mediatheque.getInstance().setData(new MediathequeData());
+		DataBase.ConnecterDataBase();
+		con = DataBase.getConnection();
+;	}
 
 	// renvoie la liste de tous les documents de la biblioth�que
 	@Override
@@ -85,7 +63,7 @@ public class MediathequeData implements PersistentMediatheque {
 	@Override
 	public Document getDocument(int numDocument) throws SQLException {
 		Statement requeteDoc = con.createStatement();
-		ResultSet tableResultat = requeteDoc.executeQuery ("SELECT Type, Titre, Artiste, Annee, Iduser_emprunt FROM Document WHERE Iddoc = " + numDocument);
+		ResultSet tableResultat = requeteDoc.executeQuery("SELECT Type, Titre, Artiste, Annee, Iduser_emprunt FROM Document WHERE Iddoc = " + numDocument);
 		if (!tableResultat.next()) {
 			con.close();
 			return null;

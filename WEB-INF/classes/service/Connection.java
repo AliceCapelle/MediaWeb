@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class connection extends HttpServlet {
+public class Connection extends HttpServlet {
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
 		/*HttpSession laSession = request.getSession(true);
