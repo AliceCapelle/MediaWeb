@@ -23,12 +23,10 @@ public class Verification extends HttpServlet {
 		String login = request.getParameter("login");
 		String password = request.getParameter("mdp");
 
-		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		
-		
-		if(login != null && password!=null) {
+
+		if (login != null && password != null) {
 			if (login.equals("admin") && password.equals("admin")) {
 				mediatheque.PersistentMediatheque m = new MediathequeData();
 				out.println("<h1>" + login + "</h1>");
@@ -39,35 +37,24 @@ public class Verification extends HttpServlet {
 			} else
 				try {
 					Utilisateur user = Mediatheque.getInstance().getUser(login, password);
-					if(user == null){
-						out.println("<h1>" + login + "</h1>");
-						out.println("<h1>" + password + "</h1>");
-						out.println("<h1> Tu n'existe pas !</h1>");
-						out.println("<meta http-equiv=\"refresh\" content=\"4;URL='connection'\">");
+					if (user == null) {
+						out.println("<h1>Cet utilisateur n'existe pas</h1>");
+						out.println("<meta http-equiv=\"refresh\" content=\"2;URL='connection'\">");
 					}
-					
+
 					else if (user.getType().equals("Bibliothecaire")) {
-						out.println("<h1>" + login + "</h1>");
-						out.println("<h1>" + password + "</h1>");
-						out.println("<h1>" + user.getId_user() + "</h1>");
-						out.println("<h1> Bibliothecaire !</h1>");
-						
+						out.println("<meta http-equiv=\"refresh\" content=\"0;URL='bibliothecaire'\">");
 					}
-	
+
 					else if (user.getType().equals("User")) {
-						out.println("<h1>" + login + "</h1>");
-						out.println("<h1>" + password + "</h1>");
-						out.println("<h1>" + user.getId_user() + "</h1>");
-						out.println("<h1> User !</h1>");
+						out.println("<meta http-equiv=\"refresh\" content=\"0;URL='user'\">");
 					}
-	
+
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		}
 
-		
-		
 	}
 }

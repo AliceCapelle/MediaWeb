@@ -18,6 +18,24 @@
 	<url-pattern>/verification</url-pattern>
 </servlet-mapping>
 
+<servlet>
+	<servlet-name>Bibliothecaire</servlet-name>
+	<servlet-class>service.Bibliothecaire</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>Bibliothecaire</servlet-name>
+	<url-pattern>/bibliothecaire</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>AjoutDoc</servlet-name>
+	<servlet-class>service.AjoutDoc</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>AjoutDoc</servlet-name>
+	<url-pattern>/ajoutdoc</url-pattern>
+</servlet-mapping>
+
 
 
 
