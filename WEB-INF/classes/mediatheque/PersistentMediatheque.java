@@ -3,6 +3,8 @@ package mediatheque;
 import java.sql.SQLException;
 import java.util.List;
 
+import persistantdata.Document;
+
 public interface PersistentMediatheque {
 // Jean-Fran�ois Brette 01/01/2018
 	List<Document> tousLesDocuments() throws SQLException;
@@ -10,7 +12,7 @@ public interface PersistentMediatheque {
 	Document getDocument(int numDocument) throws SQLException;
 
 	Utilisateur getUser(String login, String password) throws SQLException;
-	
-	void nouveauDocument(int type, Object... args );
+
+	void nouveauDocument(int type, String Titre, String Artiste, int annee) throws SQLException;
 
 }

@@ -34,7 +34,7 @@ public class MediathequeData implements PersistentMediatheque {
 			return null;
 		else {
 			do {
-				Document d  = new Document(tableResultat.getInt("Iddoc"), tableResultat.getString("Type"), tableResultat.getString("Titre"), 
+				Document d  = new Docu(tableResultat.getInt("Iddoc"), tableResultat.getInt("Type"), tableResultat.getString("Titre"), 
 						tableResultat.getString("Artiste"), tableResultat.getInt("Annee"), tableResultat.getInt("Iduser_emprunt"));
 				doc.add(d);
 			}while (tableResultat.next());
@@ -78,7 +78,7 @@ public class MediathequeData implements PersistentMediatheque {
 		}
 			
 		else {
-			Document d  = new Document(numDocument, tableResultat.getString("Type"), tableResultat.getString("Titre"), 
+			Document d  = new Docu(numDocument, tableResultat.getInt("Type"), tableResultat.getString("Titre"), 
 					tableResultat.getString("Artiste"), tableResultat.getInt("Annee"), tableResultat.getInt("Iduser_emprunt"));
 			con.close();
 			return d;
@@ -87,10 +87,13 @@ public class MediathequeData implements PersistentMediatheque {
 	}
 
 	@Override
-	public void nouveauDocument(int type, Object... args) {
-		// args[0] -> le titre
-		// args [1] --> l'auteur
-		// etc...
+	public void nouveauDocument(int type, String Titre, String Artiste, int Annee) throws SQLException {
+		String querry = "INSERT INTO Document (Type, Titre, Artiste, Annee) VALUES(?,?,?,?)";
+		PreparedStatement requete = con.prepareStatement(querry);
+		requete.setInt(1, type);
+		requete.setString(2, Titre);
+		requete.setString(3, Artiste);
+		requete.setInt(4, Annee);
 	}
 	
 

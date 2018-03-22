@@ -28,35 +28,44 @@ public class Verification extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		
-
-		if (login.equals("admin") && password.equals("admin")) {
-			mediatheque.PersistentMediatheque m = new MediathequeData();
-			out.println("<h1>" + login + "</h1>");
-			out.println("<h1>" + password + "</h1>");
-			out.println("<h1> Succes !</h1>");
-			// on instancie la mediahteque
-			// on afficher un message de succes
-		} else
-			try {
-				if (Mediatheque.getInstance().getUser(login, password).getType().equals("Bibliothecaire")) {
-					out.println("<h1>" + login + "</h1>");
-					out.println("<h1>" + password + "</h1>");
-					out.println("<h1>" + Mediatheque.getInstance().getUser(login, password).getId_user() + "</h1>");
-					out.println("<h1> Bibliothecaire !</h1>");
+		if(login != null && password!=null) {
+			if (login.equals("admin") && password.equals("admin")) {
+				mediatheque.PersistentMediatheque m = new MediathequeData();
+				out.println("<h1>" + login + "</h1>");
+				out.println("<h1>" + password + "</h1>");
+				out.println("<h1> Succes !</h1>");
+				// on instancie la mediahteque
+				// on afficher un message de succes
+			} else
+				try {
+					Utilisateur user = Mediatheque.getInstance().getUser(login, password);
+					if(user == null){
+						out.println("<h1>" + login + "</h1>");
+						out.println("<h1>" + password + "</h1>");
+						out.println("<h1> Tu n'existe pas !</h1>");
+						out.println("<meta http-equiv=\"refresh\" content=\"4;URL='connection'\">");
+					}
 					
+					else if (user.getType().equals("Bibliothecaire")) {
+						out.println("<h1>" + login + "</h1>");
+						out.println("<h1>" + password + "</h1>");
+						out.println("<h1>" + user.getId_user() + "</h1>");
+						out.println("<h1> Bibliothecaire !</h1>");
+						
+					}
+	
+					else if (user.getType().equals("User")) {
+						out.println("<h1>" + login + "</h1>");
+						out.println("<h1>" + password + "</h1>");
+						out.println("<h1>" + user.getId_user() + "</h1>");
+						out.println("<h1> User !</h1>");
+					}
+	
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-
-				else if (Mediatheque.getInstance().getUser(login, password).getType().equals("User")) {
-					// on lance la page pour emprunter et rendre un livre
-				}
-
-				else {
-					// page utilisateur n'existe pas
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		}
 
 		
 		

@@ -12,21 +12,11 @@ import java.io.PrintWriter;
 public class Connection extends HttpServlet {
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
-		/*HttpSession laSession = request.getSession(true);
-		String login = request.getParameter("login");
-		String password = request.getParameter("mdp");
-		//User user = new User(login, password);*/
-	
-		
-		//laSession.setAttribute("user", user);
 		
 		response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println("<html>");
         out.println("<head>");
-
-	    //String confirmation = user.toString();
-
 	    out.println("<h1>Bienvenue dans votre mediatheque</h1>");
 	    out.println(" <form action=\"verification\"> Login:<br>");
 	    out.println("<input type=\"text\" name=\"login\"><br>");

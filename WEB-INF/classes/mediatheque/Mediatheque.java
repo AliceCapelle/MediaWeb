@@ -3,6 +3,8 @@ package mediatheque;
 import java.sql.SQLException;
 import java.util.List;
 
+import persistantdata.Document;
+
 /**
  cette classe repr�sente la mediatheque du point de vue du domaine
  cette classe est un singleton
@@ -41,13 +43,13 @@ public class Mediatheque {
 
 	// enregistre l'emprunt par l'abonn� a du document d)
 
-	public void emprunt(Document d, Utilisateur a) throws EmpruntException {
+	public void emprunt(Document d, Utilisateur a) throws EmpruntException, SQLException {
 		d.emprunter(a);
 	}
 
 	//enregistre le retour du document d)
 
-	public void retour (Document d) {
+	public void retour (Document d) throws SQLException {
 		d.retour();
 	}
 
@@ -75,8 +77,8 @@ public class Mediatheque {
 	
 	// ajoute un nouveau document
 
-	public void nouveauDocument(int type, Object... args ) {
-		data.nouveauDocument(type, args);
+	public void nouveauDocument(int type, String Titre, String Artiste, int Annee) throws SQLException {
+		data.nouveauDocument(type, Titre, Artiste, Annee);
 	};
 
 }
