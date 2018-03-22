@@ -31,6 +31,14 @@ public class Utilisateur {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public int getId_user() {
+		return id_user;
+	}
+	public void setId_user(int id_user) {
+		this.id_user = id_user;
+	}
+	
+	
 	
 	
 }

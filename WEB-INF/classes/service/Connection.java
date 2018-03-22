@@ -28,7 +28,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 	    //String confirmation = user.toString();
 
 	    out.println("<h1>Bienvenue dans votre mediatheque</h1>");
-	    out.println(" <form action=\"succes\"> Login:<br>");
+	    out.println(" <form action=\"verification\"> Login:<br>");
 	    out.println("<input type=\"text\" name=\"login\"><br>");
 	    out.println("Password:<br>");
 	    out.println("<input type=\"text\" name=\"mdp\">");

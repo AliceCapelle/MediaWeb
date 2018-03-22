@@ -25,6 +25,7 @@ public class Document {
 		
 	}
 	void retour() {
+		
 	}
 	Object[] affiche() {
 		return null;

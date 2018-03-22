@@ -14,11 +14,17 @@ public class DataBase {
 	private static String mdp;
 	private static Connection con;
 	
+	public static void main(String [ ] args)
+	{
+		ConnecterDataBase();
+		
+	}
+	
 	public static void ConnecterDataBase() {
 		driver = "org.mariadb.jdbc.Driver";
-		url = "jdbc:mariadb://localhost:3306/projet_java";
-		user = "root";
-		mdp = "";
+		url = "jdbc:mariadb://localhost/projet_java";
+		user = "projet_java";
+		mdp = "java";
 		con = null;
 		try {
 			Class.forName(driver);
@@ -32,6 +38,7 @@ public class DataBase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("success");
 	}
 	
 	public static Connection getConnection() {

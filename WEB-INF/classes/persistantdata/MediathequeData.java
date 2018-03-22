@@ -14,17 +14,20 @@ public class MediathequeData implements PersistentMediatheque {
 // Jean-Fran�ois Brette 01/01/2018
 	private static Connection con;
 	
-
-	private MediathequeData() {
-		Mediatheque.getInstance().setData(new MediathequeData());
+	static {
 		DataBase.ConnecterDataBase();
+		Mediatheque.getInstance().setData(new MediathequeData());
 		con = DataBase.getConnection();
-;	}
+	}
+	
+	public MediathequeData() {
+		
+	}
 
 	// renvoie la liste de tous les documents de la biblioth�que
 	@Override
 	public List<Document> tousLesDocuments() throws SQLException {
-		List<Document> doc = new ArrayList<Document>();
+		List<Document> doc = new ArrayList<Document>();		
 		Statement requeteDoc = con.createStatement();
 		ResultSet tableResultat = requeteDoc.executeQuery ("SELECT Iddoc, Type, Titre, Artiste, Annee, Iduser_emprunt FROM Document");
 		if (!tableResultat.next())
@@ -44,8 +47,11 @@ public class MediathequeData implements PersistentMediatheque {
 	// si pas trouv�, renvoie null
 	@Override
 	public Utilisateur getUser(String login, String password) throws SQLException {
-		Statement requeteDoc = con.createStatement();
-		ResultSet tableResultat = requeteDoc.executeQuery ("SELECT Iduser, Type FROM Utilisateurs WHERE Nom = " +login + "AND MotDePasse = " + password);
+		String querry = "SELECT Iduser, Type FROM Utilisateurs WHERE Nom = ? AND MotDePasse = ?";
+		PreparedStatement requete = con.prepareStatement(querry);
+		requete.setString(1, login);
+		requete.setString(2, password);
+		ResultSet tableResultat = requete.executeQuery ();
 		if (!tableResultat.next()) {
 			con.close();
 			return null;}
@@ -54,7 +60,6 @@ public class MediathequeData implements PersistentMediatheque {
 			con.close();
 			return u;
 		}
-		
 	}
 
 	// va r�cup�rer le document de num�ro numDocument dans la BD
@@ -62,8 +67,11 @@ public class MediathequeData implements PersistentMediatheque {
 	// si pas trouv�, renvoie null
 	@Override
 	public Document getDocument(int numDocument) throws SQLException {
-		Statement requeteDoc = con.createStatement();
-		ResultSet tableResultat = requeteDoc.executeQuery("SELECT Type, Titre, Artiste, Annee, Iduser_emprunt FROM Document WHERE Iddoc = " + numDocument);
+		String querry = "SELECT Type, Titre, Artiste, Annee, Iduser_emprunt FROM Document WHERE Iddoc = ?";
+		PreparedStatement requete = con.prepareStatement(querry);
+		requete.setInt(1, numDocument);
+		ResultSet tableResultat = requete.executeQuery();
+		
 		if (!tableResultat.next()) {
 			con.close();
 			return null;

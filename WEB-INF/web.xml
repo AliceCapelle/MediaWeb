@@ -1,21 +1,21 @@
 <web-app>
 <servlet>
-	<servlet-name>connection</servlet-name>
-	<servlet-class>mediatheque.connection</servlet-class>
+	<servlet-name>Connection</servlet-name>
+	<servlet-class>service.Connection</servlet-class>
 </servlet>
 <servlet-mapping>
-	<servlet-name>connection</servlet-name>
+	<servlet-name>Connection</servlet-name>
 	<url-pattern>/connection</url-pattern>
 </servlet-mapping>
 
 
 <servlet>
-	<servlet-name>succes</servlet-name>
-	<servlet-class>mediatheque.succes</servlet-class>
+	<servlet-name>Verification</servlet-name>
+	<servlet-class>service.Verification</servlet-class>
 </servlet>
 <servlet-mapping>
-	<servlet-name>succes</servlet-name>
-	<url-pattern>/succes</url-pattern>
+	<servlet-name>Verification</servlet-name>
+	<url-pattern>/verification</url-pattern>
 </servlet-mapping>
 
 
