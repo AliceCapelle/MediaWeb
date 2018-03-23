@@ -60,5 +60,26 @@ public class Docu implements Document{
 		return null;
 	}
 
+
+	@Override
+	public String getTitre() {
+		return this.Titre;
+	}
+
+
+	@Override
+	public String getArtiste() {
+		return this.Artiste;
+	}
+
+
+	@Override
+	public int getAnnee() {
+		return this.Annee;
+	}
+
+
+
+	
 	
 }

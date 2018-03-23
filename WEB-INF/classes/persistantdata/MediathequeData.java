@@ -41,8 +41,7 @@ public class MediathequeData implements PersistentMediatheque {
 				doc.add(d);
 			} while (tableResultat.next());
 		}
-		con.close();
-		return null;
+		return doc;
 	}
 
 	// va r�cup�rer le User dans la BD et le renvoie

@@ -36,6 +36,25 @@
 	<url-pattern>/ajoutdoc</url-pattern>
 </servlet-mapping>
 
+<servlet>
+	<servlet-name>User</servlet-name>
+	<servlet-class>service.User</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>User</servlet-name>
+	<url-pattern>/user</url-pattern>
+</servlet-mapping>
+
+
+
+<servlet>
+	<servlet-name>EmpruntDoc</servlet-name>
+	<servlet-class>service.EmpruntDoc</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>EmpruntDoc</servlet-name>
+	<url-pattern>/emprunt</url-pattern>
+</servlet-mapping>
 
 
 
