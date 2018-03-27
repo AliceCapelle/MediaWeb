@@ -18,29 +18,32 @@ public class EmpruntDoc extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		
 		List<Document> d = new ArrayList<Document>();
-		
+
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-		
 		try {
 			Mediatheque m = Mediatheque.getInstance();
-			d =  m.tousLesDocuments();
+			d = m.tousLesDocuments();
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
-
-		for(int i = 0; i<d.size(); i++) {
-			out.print("<p>"+d.get(i).getTitre()+"		"+d.get(i).getArtiste() +"		"+ d.get(i).getAnnee() +"</p>");
-			out.print("<input type=\"submit\" value=\"Emprunter le document\">");
+		
+		out.println("<h1>Choisissez votre document</h1>");
+		
+		out.println("<table>");
+		for (int i = 0; i < d.size(); i++) {
+			out.println("<tr>");
+			out.print("<td><b>"+d.get(i).getType()+"</b></td>");
+			out.print("<td>"+d.get(i).getTitre()+"</td>");
+			out.print("<td>"+ d.get(i).getArtiste() +"</td>");
+			out.print("<td>"+ d.get(i).getAnnee()+"</td>");
+			out.print("<td><input type=\"submit\" name=\"Emprunter le document\" value=" + d.get(i)+ "></td>");
+			out.println("</tr>");
 		}
-		
-		
-		
-		
+		out.println("</table>");
 	}
 }

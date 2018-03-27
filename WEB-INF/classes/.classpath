@@ -28,7 +28,6 @@
 	<classpathentry kind="lib" path="/home/alice/Documents/tomcat/lib/tomcat-util-scan.jar"/>
 	<classpathentry kind="lib" path="/home/alice/Documents/tomcat/lib/tomcat-websocket.jar"/>
 	<classpathentry kind="lib" path="/home/alice/Documents/tomcat/lib/websocket-api.jar"/>
-	<classpathentry kind="lib" path="/home/alice/Bureau/mariadb-java-client-2.2.3.jar"/>
 	<classpathentry kind="lib" path="/home/alice/Téléchargements/postgresql-42.2.2.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

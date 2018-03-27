@@ -1,6 +1,7 @@
 package persistantdata;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import java.sql.*;
@@ -44,6 +45,28 @@ public class MediathequeData implements PersistentMediatheque {
 		return doc;
 	}
 
+	public List<Document> getDocuUser(int id) throws SQLException{
+		List<Document> doc = new ArrayList<Document>();
+		String querry = "SELECT Iddoc, Type, Titre, Artiste, Annee, Iduser_emprunt from Document where Iduser_emprunt = ?";
+		PreparedStatement requete = con.prepareStatement(querry);
+		requete.setInt(1, id);
+		ResultSet tableResultat = requete.executeQuery();
+		if (!tableResultat.next()) {
+			return null;
+		} 
+		else {
+			do {
+				Document d = new Docu(tableResultat.getInt("Iddoc"), tableResultat.getInt("Type"),
+						tableResultat.getString("Titre"), tableResultat.getString("Artiste"),
+						tableResultat.getInt("Annee"), tableResultat.getInt("Iduser_emprunt"));
+				doc.add(d);
+			}while(tableResultat.next());
+		}
+		return doc;
+	}
+	
+	
+	
 	// va r�cup�rer le User dans la BD et le renvoie
 	// si pas trouv�, renvoie null
 	@Override

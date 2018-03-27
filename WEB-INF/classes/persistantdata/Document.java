@@ -11,5 +11,6 @@ public interface Document {
 	Object[] affiche() ;
 	String getTitre();
 	String getArtiste();
+	String getType();
 	int getAnnee();
 }

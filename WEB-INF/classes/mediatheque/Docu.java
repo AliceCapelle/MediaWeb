@@ -79,6 +79,17 @@ public class Docu implements Document{
 	}
 
 
+	@Override
+	public String getType() {
+		if(this.Type ==1)
+			return "Livre";
+		else if(this.Type==2)
+			return "Dvd";
+		else
+			return "Cd";
+	}
+
+
 
 	
 	
