@@ -56,6 +56,16 @@
 	<url-pattern>/emprunt</url-pattern>
 </servlet-mapping>
 
+<servlet>
+	<servlet-name>EmpruntSucces</servlet-name>
+	<servlet-class>service.EmpruntSucces</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>EmpruntSucces</servlet-name>
+	<url-pattern>/empruntsucces</url-pattern>
+</servlet-mapping>
+
+
 
 
 </web-app>

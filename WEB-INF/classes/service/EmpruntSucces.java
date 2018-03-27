@@ -3,8 +3,6 @@ package service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,17 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import mediatheque.EmpruntException;
 import mediatheque.Mediatheque;
 import mediatheque.Utilisateur;
 import persistantdata.Document;
 
-public class EmpruntDoc extends HttpServlet {
+public class EmpruntSucces extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
 		HttpSession laSession = request.getSession(true);
 		Utilisateur user = (Utilisateur) laSession.getAttribute("user");
-		List<Document> d = new ArrayList<Document>();
+		int iddoc = Integer.parseInt(request.getParameter("iddoc"));
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -31,31 +29,22 @@ public class EmpruntDoc extends HttpServlet {
 			out.println("<h1>Veuillez vous connecter</h1>");
 			out.println("<meta http-equiv=\"refresh\" content=\"2;URL='connection'\">");
 		} else {
+			Mediatheque m = Mediatheque.getInstance();
+			Document d = null;
 			try {
-				Mediatheque m = Mediatheque.getInstance();
-				d = m.tousLesDocuments();
+				d = m.getDocument(iddoc);
+				m.emprunt(d, user);
 
 			} catch (SQLException e) {
-
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (EmpruntException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			out.println("<h1>Choisissez votre document</h1>");
 
-			out.println("<table>");
-			for (int i = 0; i < d.size(); i++) {
-				out.println("<tr>");
-				out.print("<td><b>" + d.get(i).getType() + "</b></td>");
-				out.print("<td>" + d.get(i).getTitre() + "</td>");
-				out.print("<td>" + d.get(i).getArtiste() + "</td>");
-				out.print("<td>" + d.get(i).getAnnee() + "</td>");
-				out.println("<form action=\"empruntsucces\"> ");
-				out.print("<td><input type=\"submit\" value=\"Emprunter ce document\" action=\"empruntsucces\"></td>");
-				out.print("<td><input type=\"hidden\" name=\"iddoc\" value=" + d.get(i).getIddoc() + "></td>");
-				out.println("</form>");
-				out.println("</tr>");
-			}
-			out.println("</table>");
+			out.println("<h1>Le document " + d.getTitre() + " a été emprunté avec succes</h1>");
 		}
 	}
 }

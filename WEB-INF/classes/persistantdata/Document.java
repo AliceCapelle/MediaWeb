@@ -12,5 +12,6 @@ public interface Document {
 	String getTitre();
 	String getArtiste();
 	String getType();
+	int getIddoc();
 	int getAnnee();
 }

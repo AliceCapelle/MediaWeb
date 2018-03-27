@@ -22,7 +22,7 @@ public class Connection extends HttpServlet {
 		out.println("<input type=\"text\" name=\"login\"><br>");
 		out.println("Password:<br>");
 		out.println("<input type=\"password\" name=\"mdp\">");
-		out.println(" <input type=\"submit\" value=\"Submit\">");
+		out.println(" <input type=\"submit\" value=\"Se connecter\">");
 		out.println("</form>");
 		out.println("</head>");
 		out.println("<body bgcolor=\"white\">");

@@ -90,6 +90,12 @@ public class Docu implements Document{
 	}
 
 
+	@Override
+	public int getIddoc() {
+		return this.Iddoc;
+	}
+
+
 
 	
 	

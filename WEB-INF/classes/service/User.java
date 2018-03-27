@@ -9,16 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import mediatheque.Utilisateur;
+
 public class User extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		HttpSession laSession = request.getSession(true);
-		String login = (String) laSession.getAttribute("Login");
+		Utilisateur user = (Utilisateur) laSession.getAttribute("user");
 		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		if(login == null) {
+		if(user.getNom() == null) {
 			out.println("<h1>Veuillez vous connecter</h1>");
 			out.println("<meta http-equiv=\"refresh\" content=\"2;URL='connection'\">");
 		}
@@ -26,7 +28,7 @@ public class User extends HttpServlet {
 		else {
 			out.println("<html>");
 			out.println("<head>");
-			out.println("<h1>Bienvenue dans votre espace abonné " + login + "</h1>");
+			out.println("<h1>Bienvenue dans votre espace abonné " + user.getNom() + "</h1>");
 			
 			out.println("<form action=\"emprunt\">");
 			out.println("<input type=\"submit\" value=\"Emprunter un livre\">");

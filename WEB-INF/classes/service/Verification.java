@@ -47,7 +47,7 @@ public class Verification extends HttpServlet {
 					}
 
 					else if (user.getType().equals("User")) {
-						laSession.setAttribute("Login", login);
+						laSession.setAttribute("user", user);
 						out.println("<meta http-equiv=\"refresh\" content=\"0;URL='user'\">");
 					}
 
