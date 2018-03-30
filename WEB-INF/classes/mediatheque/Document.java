@@ -1,9 +1,6 @@
-package persistantdata;
+package mediatheque;
 
 import java.sql.SQLException;
-
-import mediatheque.EmpruntException;
-import mediatheque.Utilisateur;
 
 public interface Document {
 	void emprunter(Utilisateur a) throws EmpruntException, SQLException ;

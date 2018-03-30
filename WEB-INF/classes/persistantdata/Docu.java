@@ -1,14 +1,15 @@
 // Jean-Fran�ois Brette 01/01/2018
 
-package mediatheque;
+package persistantdata;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import persistantdata.DataBase;
-import persistantdata.Document;
+import mediatheque.Document;
+import mediatheque.EmpruntException;
+import mediatheque.Utilisateur;
 
 public class Docu implements Document{
 // Jean-Fran�ois Brette 01/01/2018

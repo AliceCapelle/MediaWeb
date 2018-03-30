@@ -66,6 +66,24 @@
 </servlet-mapping>
 
 
+<servlet>
+	<servlet-name>RendreDoc</servlet-name>
+	<servlet-class>service.RendreDoc</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>RendreDoc</servlet-name>
+	<url-pattern>/retour</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>RetourSucces</servlet-name>
+	<servlet-class>service.RetourSucces</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>RetourSucces</servlet-name>
+	<url-pattern>/retoursucces</url-pattern>
+</servlet-mapping>
+
 
 
 </web-app>

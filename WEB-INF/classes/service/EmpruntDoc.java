@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import mediatheque.Document;
 import mediatheque.Mediatheque;
 import mediatheque.Utilisateur;
-import persistantdata.Document;
 
 public class EmpruntDoc extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,6 +34,7 @@ public class EmpruntDoc extends HttpServlet {
 			try {
 				Mediatheque m = Mediatheque.getInstance();
 				d = m.tousLesDocuments();
+				
 
 			} catch (SQLException e) {
 
@@ -50,7 +51,7 @@ public class EmpruntDoc extends HttpServlet {
 				out.print("<td>" + d.get(i).getArtiste() + "</td>");
 				out.print("<td>" + d.get(i).getAnnee() + "</td>");
 				out.println("<form action=\"empruntsucces\"> ");
-				out.print("<td><input type=\"submit\" value=\"Emprunter ce document\" action=\"empruntsucces\"></td>");
+				out.print("<td><input type=\"submit\" value=\"Emprunter ce document\"></td>");
 				out.print("<td><input type=\"hidden\" name=\"iddoc\" value=" + d.get(i).getIddoc() + "></td>");
 				out.println("</form>");
 				out.println("</tr>");

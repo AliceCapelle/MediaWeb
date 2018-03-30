@@ -15,7 +15,7 @@ import mediatheque.EmpruntException;
 import mediatheque.Mediatheque;
 import mediatheque.Utilisateur;
 
-public class EmpruntSucces extends HttpServlet {
+public class RetourSucces extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		HttpSession laSession = request.getSession(true);
@@ -33,25 +33,22 @@ public class EmpruntSucces extends HttpServlet {
 			Document d = null;
 			try {
 				d = m.getDocument(iddoc);
-				m.emprunt(d, user);
+				m.retour(d);
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (EmpruntException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			} 
 
-
-			out.println("<h1>Le document " + d.getTitre() + " a été emprunté avec succes</h1>");
+			out.println("<h1>Le document " + d.getTitre() + " a été rendu avec succes</h1>");
 			out.println("<form action=\"emprunt\">");
 			out.println("<input type=\"submit\" value=\"Emprunter un livre\">");
 			out.println("</form>");
-			
+
 			out.println("<form action=\"retour\">");
 			out.println("<input type=\"submit\" value=\"Rendre un livre\">");
 			out.println("</form>");
 		}
+
 	}
 }

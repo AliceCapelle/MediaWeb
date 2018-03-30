@@ -3,8 +3,6 @@ package mediatheque;
 import java.sql.SQLException;
 import java.util.List;
 
-import persistantdata.Document;
-
 /**
  cette classe repr�sente la mediatheque du point de vue du domaine
  cette classe est un singleton
@@ -59,6 +57,10 @@ public class Mediatheque {
 
 	public List<Document> tousLesDocuments() throws SQLException {
 		return data.tousLesDocuments();
+	}
+	
+	public List<Document> getDocuUser(int id) throws SQLException {
+		return data.getDocuUser(id);
 	}
 
 	// renvoie le user de login et passwd 
