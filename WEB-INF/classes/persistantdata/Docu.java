@@ -3,12 +3,12 @@
 package persistantdata;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import mediatheque.Document;
-import mediatheque.EmpruntException;
 import mediatheque.Utilisateur;
 
 public class Docu implements Document{
@@ -33,8 +33,7 @@ public class Docu implements Document{
 
 
 	@Override
-	public void emprunter(Utilisateur a) throws EmpruntException, SQLException {
-		//Faire l'exception si le livre est deja emprunte
+	public void emprunter(Utilisateur a) throws SQLException {
 		Connection con = DataBase.getConnection();
 		String querry = "UPDATE Document set Iduser_emprunt= ? where Iddoc = ?";
 		PreparedStatement requete = con.prepareStatement(querry);
@@ -94,6 +93,12 @@ public class Docu implements Document{
 	@Override
 	public int getIddoc() {
 		return this.Iddoc;
+	}
+
+
+	@Override
+	public int getIdEmprunt() {
+		return this.Iduser_emprunt;
 	}
 
 

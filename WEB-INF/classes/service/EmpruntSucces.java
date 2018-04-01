@@ -1,6 +1,7 @@
 package service;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import mediatheque.Document;
-import mediatheque.EmpruntException;
 import mediatheque.Mediatheque;
 import mediatheque.Utilisateur;
 
@@ -33,12 +33,11 @@ public class EmpruntSucces extends HttpServlet {
 			Document d = null;
 			try {
 				d = m.getDocument(iddoc);
-				m.emprunt(d, user);
-
+				Object v = new Object();
+				synchronized (v) {
+					m.emprunt(d, user);
+				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (EmpruntException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

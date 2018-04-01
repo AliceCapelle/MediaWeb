@@ -44,6 +44,26 @@ public class MediathequeData implements PersistentMediatheque {
 		}
 		return doc;
 	}
+	
+	// renvoie la liste de tous les documents empruntable de la biblioth�que
+		@Override
+		public List<Document> tousLesDocumentsEmpruntable() throws SQLException {
+			List<Document> doc = new ArrayList<Document>();
+			Statement requeteDoc = con.createStatement();
+			ResultSet tableResultat = requeteDoc
+					.executeQuery("SELECT Iddoc, Type, Titre, Artiste, Annee, Iduser_emprunt FROM Document where Iduser_emprunt is null");
+			if (!tableResultat.next())
+				return null;
+			else {
+				do {
+					Document d = new Docu(tableResultat.getInt("Iddoc"), tableResultat.getInt("Type"),
+							tableResultat.getString("Titre"), tableResultat.getString("Artiste"),
+							tableResultat.getInt("Annee"), tableResultat.getInt("Iduser_emprunt"));
+					doc.add(d);
+				} while (tableResultat.next());
+			}
+			return doc;
+		}
 
 	public List<Document> getDocuUser(int id) throws SQLException{
 		List<Document> doc = new ArrayList<Document>();

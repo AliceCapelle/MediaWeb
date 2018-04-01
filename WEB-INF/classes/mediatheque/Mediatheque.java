@@ -41,7 +41,7 @@ public class Mediatheque {
 
 	// enregistre l'emprunt par l'abonn� a du document d)
 
-	public void emprunt(Document d, Utilisateur a) throws EmpruntException, SQLException {
+	public void emprunt(Document d, Utilisateur a) throws SQLException {
 		d.emprunter(a);
 	}
 
@@ -57,6 +57,10 @@ public class Mediatheque {
 
 	public List<Document> tousLesDocuments() throws SQLException {
 		return data.tousLesDocuments();
+	}
+	
+	public List<Document> tousLesDocumentsEmpruntable() throws SQLException {
+		return data.tousLesDocumentsEmpruntable();
 	}
 	
 	public List<Document> getDocuUser(int id) throws SQLException {

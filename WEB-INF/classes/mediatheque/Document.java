@@ -3,7 +3,7 @@ package mediatheque;
 import java.sql.SQLException;
 
 public interface Document {
-	void emprunter(Utilisateur a) throws EmpruntException, SQLException ;
+	void emprunter(Utilisateur a) throws SQLException ;
 	void retour() throws SQLException;
 	Object[] affiche() ;
 	String getTitre();
@@ -11,4 +11,5 @@ public interface Document {
 	String getType();
 	int getIddoc();
 	int getAnnee();
+	int getIdEmprunt();
 }

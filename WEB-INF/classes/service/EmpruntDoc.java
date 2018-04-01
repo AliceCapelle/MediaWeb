@@ -33,7 +33,7 @@ public class EmpruntDoc extends HttpServlet {
 		} else {
 			try {
 				Mediatheque m = Mediatheque.getInstance();
-				d = m.tousLesDocuments();
+				d = m.tousLesDocumentsEmpruntable();
 				
 
 			} catch (SQLException e) {

@@ -1,6 +1,7 @@
 package service;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import mediatheque.Document;
-import mediatheque.EmpruntException;
 import mediatheque.Mediatheque;
 import mediatheque.Utilisateur;
 

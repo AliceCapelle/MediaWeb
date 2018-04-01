@@ -14,6 +14,8 @@ public interface PersistentMediatheque {
 	Utilisateur getUser(String login, String password) throws SQLException;
 
 	void nouveauDocument(int type, String Titre, String Artiste, int annee) throws SQLException;
+
+	List<Document> tousLesDocumentsEmpruntable() throws SQLException;
 	
 
 }

@@ -16,7 +16,7 @@ create table Document(
 	Artiste varchar(30) not null,
 	Annee integer,
 	Iduser_emprunt integer,
-	foreign key(Iduser_emprunt) references Utilisateurs(Iduser)
+	foreign key(Iduser_emprunt) references Utilisateurs(Iduser) 
 );
 
 
