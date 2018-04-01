@@ -20,9 +20,10 @@ public class User extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		if(user.getNom() == null) {
-			out.println("<h1>Veuillez vous connecter</h1>");
-			out.println("<meta http-equiv=\"refresh\" content=\"2;URL='connection'\">");
+		if (user == null) {
+			response.sendRedirect("connection");
+		} else if (user.getType().equals("Bibliothecaire")) {
+			response.sendRedirect("bibliothecaire");
 		}
 		
 		else {
@@ -37,7 +38,16 @@ public class User extends HttpServlet {
 			out.println("<form action=\"retour\">");
 			out.println("<input type=\"submit\" value=\"Rendre un livre\">");
 			out.println("</form>");
+			
+			out.println("<form method=\"post\">");
+			out.println("<input type=\"submit\" value=\"Deconnection\">");
+			out.println("</form>");
 		}
 		
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		request.getSession().invalidate();
+		response.sendRedirect("connection");
 	}
 }

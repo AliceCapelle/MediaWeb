@@ -10,15 +10,6 @@
 
 
 <servlet>
-	<servlet-name>Verification</servlet-name>
-	<servlet-class>service.Verification</servlet-class>
-</servlet>
-<servlet-mapping>
-	<servlet-name>Verification</servlet-name>
-	<url-pattern>/verification</url-pattern>
-</servlet-mapping>
-
-<servlet>
 	<servlet-name>Bibliothecaire</servlet-name>
 	<servlet-class>service.Bibliothecaire</servlet-class>
 </servlet>
@@ -56,14 +47,7 @@
 	<url-pattern>/emprunt</url-pattern>
 </servlet-mapping>
 
-<servlet>
-	<servlet-name>EmpruntSucces</servlet-name>
-	<servlet-class>service.EmpruntSucces</servlet-class>
-</servlet>
-<servlet-mapping>
-	<servlet-name>EmpruntSucces</servlet-name>
-	<url-pattern>/empruntsucces</url-pattern>
-</servlet-mapping>
+
 
 
 <servlet>
@@ -75,14 +59,6 @@
 	<url-pattern>/retour</url-pattern>
 </servlet-mapping>
 
-<servlet>
-	<servlet-name>RetourSucces</servlet-name>
-	<servlet-class>service.RetourSucces</servlet-class>
-</servlet>
-<servlet-mapping>
-	<servlet-name>RetourSucces</servlet-name>
-	<url-pattern>/retoursucces</url-pattern>
-</servlet-mapping>
 
 
 

@@ -27,9 +27,10 @@ public class RendreDoc extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-		if (user.getNom() == null) {
-			out.println("<h1>Veuillez vous connecter</h1>");
-			out.println("<meta http-equiv=\"refresh\" content=\"2;URL='connection'\">");
+		if (user == null) {
+			response.sendRedirect("connection");
+		} else if (user.getType().equals("Bibliothecaire")) {
+			response.sendRedirect("bibliothecaire");
 		}
 
 		else {
@@ -41,7 +42,7 @@ public class RendreDoc extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			out.println("<h1>Quel document voulez vous rendre ?</h1>");
 
 			out.println("<table>");
@@ -51,16 +52,46 @@ public class RendreDoc extends HttpServlet {
 				out.print("<td>" + d.get(i).getTitre() + "</td>");
 				out.print("<td>" + d.get(i).getArtiste() + "</td>");
 				out.print("<td>" + d.get(i).getAnnee() + "</td>");
-				out.println("<form action=\"retoursucces\"> ");
+				out.println("<form method=\"post\"> ");
 				out.print("<td><input type=\"submit\" value=\"Rendre ce document\"></td>");
 				out.print("<td><input type=\"hidden\" name=\"iddoc\" value=" + d.get(i).getIddoc() + "></td>");
 				out.println("</form>");
 				out.println("</tr>");
 			}
 			out.println("</table>");
-			
+			out.println("<form action=\"user\">");
+			out.println("<input type=\"submit\" value=\"Retourner au menu\">");
+			out.println("</form>");
 		}
-
+		
+		
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		HttpSession laSession = request.getSession(true);
+		Utilisateur user = (Utilisateur) laSession.getAttribute("user");
+		int iddoc = Integer.parseInt(request.getParameter("iddoc"));
+
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+
+		Mediatheque m = Mediatheque.getInstance();
+		Document d = null;
+		try {
+			d = m.getDocument(iddoc);
+			m.retour(d);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		out.println("<h1>Le document " + d.getTitre() + " a été rendu avec succes</h1>");
+		
+		out.println("<form action=\"user\">");
+		out.println("<input type=\"submit\" value=\"Retourner au menu\">");
+		out.println("</form>");
+
+	}
 }
