@@ -1,10 +1,8 @@
-package persistantdata;
+package mediatheque;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import mediatheque.Mediatheque;
 
 public class DataBase {
 	
@@ -36,6 +34,11 @@ public class DataBase {
 	
 	public static Connection getConnection() {
 		return con;
+	}
+	
+	@Override
+	protected void finalize() throws SQLException {
+		this.con.close();
 	}
 	
 }

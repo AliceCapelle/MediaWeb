@@ -40,7 +40,7 @@ public class Bibliothecaire extends HttpServlet {
 			out.println("</form>");
 			
 			out.println("<form method=\"post\">");
-			out.println("<input type=\"submit\" value=\"Deconnection\">");
+			out.println("<input type=\"submit\" value=\"Deconnexion\">");
 			out.println("</form>");
 
 		}

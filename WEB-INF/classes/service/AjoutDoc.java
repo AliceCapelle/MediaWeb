@@ -38,15 +38,15 @@ public class AjoutDoc extends HttpServlet {
 			out.println("<h2>Ajouter un livre</h2>");
 
 			out.println(" <form method=\"post\"> Type:<br>");
-			out.println("<input type=\"text\" name=\"type\"><br>");
+			out.println("<input type=\"number\" required='required' name=\"type\"><br>");
 			out.println("Titre:<br>");
-			out.println("<input type=\"text\" name=\"titre\"><br>");
+			out.println("<input type=\"text\" required='required' name=\"titre\"><br>");
 			out.println("Artiste:<br>");
-			out.println("<input type=\"text\" name=\"artiste\"><br>");
+			out.println("<input type=\"text\" required='required' name=\"artiste\"><br>");
 			out.println("Annee:<br>");
-			out.println("<input type=\"text\" name=\"annee\"><br>");
+			out.println("<input type=\"number\" required='required' name=\"annee\"><br>");
 			out.println("<br>");
-			out.println("<input type=\"submit\" value=\"Ajouter le Document\">");
+			out.println("<input type=\"submit\" required='required' value=\"Ajouter le Document\">");
 			out.println("</form>");
 
 			out.println("</head>");
